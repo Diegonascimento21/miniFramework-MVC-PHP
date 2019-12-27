@@ -1,15 +1,35 @@
 <?php
     namespace App\Controllers;
 
-    Class indexController{
-        public function index(){
-            $dados = Array('cavalo', 'capivara', 'capote');
-            require_once "../App/views/index/index.phtml"; //partindo de public //views
+use stdClass;
+
+Class indexController{
+
+        private $view;
+
+        public function __construct()
+        {
+            $this->view = new \stdClass();
         }
+
+        public function index(){
+            $this->view->dados = Array('cavalo', 'capivara', 'capote');
+            $this->render('index');
+        }
+
         public function sobreNos(){
-            $dados = Array('prisma', "somalia");
-            require_once "../App/Views/index/sobreNos.phtml"; //partindo de public // views
+            $this->view->dados = Array('prisma', "somalia");
+            $this->render('sobreNos');
         } 
+
+        public function render($view){ //function para renderizar view
+            $classAtual = get_class($this); // metodos para pegar o caminho dinamicamente
+            $classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+            $classAtual = str_replace('Controller', '', $classAtual);
+
+            require_once "../App/Views/".$classAtual."/".$view.".phtml"; //partindo de public /views
+        }
+
     }
 
 ?>
