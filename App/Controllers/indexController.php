@@ -3,10 +3,12 @@
 
     Class indexController{
         public function index(){
-            echo "estamos na /index controller";
+            $dados = Array('cavalo', 'capivara', 'capote');
+            require_once "../App/views/index/index.phtml"; //partindo de public //views
         }
         public function sobreNos(){
-            echo "estamos na /sobre nos controller";
+            $dados = Array('prisma', "somalia");
+            require_once "../App/Views/index/sobreNos.phtml"; //partindo de public // views
         } 
     }
 
