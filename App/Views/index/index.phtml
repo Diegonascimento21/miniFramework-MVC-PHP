@@ -3,9 +3,11 @@
 
 <?php
 echo "essa é a view index ";
+echo "<hr />";
 echo "<pre />";
-foreach($this->view->dados as $key => $value){
-    echo $value;
+ foreach($this->view->dados as $key => $produto){
+    echo $produto['id'].' - '.$produto['descricao'].' - '.$produto['preco'];
+    echo "<br />";
     
 
 }
