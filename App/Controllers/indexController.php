@@ -4,19 +4,18 @@ namespace App\Controllers;
 
 use stdClass;
 use MF\Controller\action;
+use MF\Model\Container;
+
 use App\Connection;
 use App\Models\Produto;
+use App\Models\info;
 
 Class indexController extends Action{
 
         public function index(){
-            //$this->view->dados = Array('cavalo', 'capivara', 'capote');
+            //$this->view->dados = dados pra view selecionada
 
-            //instancia de conexao e usar funcao usando metodo estatico
-            $conn = Connection::getdb();
-
-            //instanciar modelo
-            $produto = new Produto($conn);
+            $produto = Container::getModel('produto'); //instancia de conexao e modelo
 
             $produtos = $produto->getProdutos();
 
@@ -27,8 +26,12 @@ Class indexController extends Action{
         }
 
         public function sobreNos(){
-            $this->view->dados = Array('prisma', "somalia");
-            $this->render('sobreNos', 'layout1');
+            
+            $info = Container::getModel('info'); 
+            $infos = $info->getInfo();
+            $this->view->dados = $infos;
+
+            $this->render('sobreNos', 'layout1'); //renderizar view e layout
         } 
 
     }

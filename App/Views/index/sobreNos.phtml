@@ -1,13 +1,12 @@
 <h1>SobreNos</h1>
 <hr/>
 
-<?php
-echo "essa é a view sobreNos ";
+<?php foreach($this->view->dados as $key => $info){ ?>
 
-echo "<pre />";
-foreach($this->view->dados as $key => $value){
-    echo $value."<br />";
-    
+    <h2><?php echo $info['titulo'] ?></h2>
+    <br />
+    <?php echo $info['descricao']?>
+    <hr />
+<?php } ?>
 
-}
-?>
+
